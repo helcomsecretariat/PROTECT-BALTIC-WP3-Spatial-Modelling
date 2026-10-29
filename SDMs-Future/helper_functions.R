@@ -1,42 +1,39 @@
-# Protect Baltic future SDM modelling 
-# Antti Takolander, Finnish Environment Institute 
-# 08 / 2026
-
-
-fit.gam <- function(data_gam, mdl_formula, gamma = 1.7) {
+fit.gam <- function(data_gam, mdl_formula) {
 
     mdl <- mgcv::gam(
       formula = mdl_formula,
       data = data_gam,
-      family = binomial(link = "logit"),
-      method = "REML",
-      select = T,
-      gamma = gamma)
+      family = binomial(link = "logit"), 
+      method = "REML", 
+      select = T, 
+      gamma = 1.6) # predicted into the data by salinity model
     return(mdl)
+  
 }
 
-# fit.gam <- function(data_gam, mdl_formula, sal_offset = FALSE, gamma = 1.7) {
-# 
+
+# fit.gam <- function(data_gam, mdl_formula, sal_offset = FALSE) {
+#   
 #   if(sal_offset) {
 #     mdl <- mgcv::gam(
 #       formula = mdl_formula,
 #       data = data_gam,
-#       family = binomial(link = "logit"),
-#       method = "REML",
-#       select = T,
-#       gamma = gamma,
+#       family = binomial(link = "logit"), 
+#       method = "REML", 
+#       select = T, 
+#       gamma = 1.6, 
 #       offset = sal_offset) # predicted into the data by salinity model
 #     return(mdl)
 #   }
-# 
+#   
 #   else {
 #     mdl <- mgcv::gam(
 #       formula = mdl_formula,
 #       data = data_gam,
-#       family = binomial(link = "logit"),
-#       method = "REML",
-#       select = T,
-#       gamma = gamma)
+#       family = binomial(link = "logit"), 
+#       method = "REML", 
+#       select = T, 
+#       gamma = 1.6)
 #     return(mdl)
 #   }
 # }

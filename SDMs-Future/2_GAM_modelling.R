@@ -1,6 +1,5 @@
 
-# Protect Baltic future SDM modelling 
-# Antti Takolander, Finnish Environment Institute 
+# Protect Baltic future SDM modelling, version1
 # 08 / 2026
 
 # 0. set model run parameters ---- 
@@ -37,34 +36,34 @@ run.start.time = Sys.time()
 sp_workname = gsub(pattern = " ", replacement = "_", x = species_name)
 sp_workname = gsub(x = sp_workname, pattern = ".", fixed = T, replacement = "_")
 
-model.dir = paste0("/scratch/project_2017703/WP3/SDM/models/", species_group)
+model.dir = paste0("models/", species_group)
 modelling.tag = paste0(sp_workname, "--", as.Date(run.start.time), "-run", run.no)
 
 # paths 
-env.stack.path = "/scratch/project_2017703/WP3/SDM/predictors/env_stack_19_11_2025_updated_names.tif"
-predictor.path = "/scratch/project_2017703/WP3/SDM/R_scripts/future_predictors.csv"
+env.stack.path = "predictors/env_stack_19_11_2025_updated_names.tif"
+predictor.path = "R_scripts/future_predictors.csv"
 
 if (species_group == "macrophytes") {
-  obs.data.path = paste0("/scratch/project_2017703/WP3/SDM/occurrence_data/macrophytes/", species_name, ".rds") # add the data path 
+  obs.data.path = paste0("occurrence_data/macrophytes/", species_name, ".rds") # add the data path 
 }
 if (species_group == "fish") {
-  obs.data.path = paste0("/scratch/project_2017703/WP3/SDM/occurrence_data/fish/", species_name, ".rds") # add the data path 
+  obs.data.path = paste0("occurrence_data/fish/", species_name, ".rds") # add the data path 
 }
 if (species_group == "invertebrates") {
-  obs.data.path = paste0("/scratch/project_2017703/WP3/SDM/occurrence_data/invertebrates/", species_name, ".rds") # add the data path 
+  obs.data.path = paste0("occurrence_data/invertebrates/", species_name, ".rds") # add the data path 
 }
 
-pb.grid.path = "/scratch/project_2017703/WP3/SDM/predictors/grid_marine_250m_v2.tif"
+pb.grid.path = "predictors/grid_marine_250m_v2.tif"
 
-source("/scratch/project_2017703/WP3/SDM/R_scripts/plotting_scripts.R")
-source("/scratch/project_2017703/WP3/SDM/R_scripts/helper_functions.R")
+source("R_scripts/plotting_scripts.R")
+source("R_scripts/helper_functions.R")
 
 # scenario paths 
-rcp45.curnutr.2040_2059.path = "/scratch/project_2017703/WP3/SDM/predictors/env_stack_rcp45_2040_2059.tif"
-rcp45.curnutr.2080_2099.path = "/scratch/project_2017703/WP3/SDM/predictors/env_stack_rcp45_2080_2099.tif"
-rcp85.curnutr.2040_2059.path = "/scratch/project_2017703/WP3/SDM/predictors/env_stack_rcp85_2040_2059.tif"
-rcp85.curnutr.2080_2099.path = "/scratch/project_2017703/WP3/SDM/predictors/env_stack_rcp85_2080_2099.tif"
-fixed.stack.path = "/scratch/project_2017703/WP3/SDM/predictors/fixed_var_stack.tif"
+rcp45.curnutr.2040_2059.path = "predictors/env_stack_rcp45_2040_2059.tif"
+rcp45.curnutr.2080_2099.path = "predictors/env_stack_rcp45_2080_2099.tif"
+rcp85.curnutr.2040_2059.path = "predictors/env_stack_rcp85_2040_2059.tif"
+rcp85.curnutr.2080_2099.path = "predictors/env_stack_rcp85_2080_2099.tif"
+fixed.stack.path = "predictors/fixed_var_stack.tif"
 
 ## 0.3 load data and predictors ---- 
 

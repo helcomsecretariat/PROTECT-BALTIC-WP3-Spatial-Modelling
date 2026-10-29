@@ -1,5 +1,4 @@
-# Protect Baltic future SDM modelling 
-# Antti Takolander, Finnish Environment Institute 
+# Protect Baltic future SDM modelling, ver 1
 # 08 / 2026
 
 library(tidyverse)
@@ -15,13 +14,13 @@ sp_group <- "fish"
 # 2. create sh-file for each species within a loop  
 # 3. create R-file for each species within a loop 
 if(sp_group == "fish") {
-  dat = read_csv("/scratch/project_2017703/WP3/SDM/input_files/spec_list_fish.csv")  
+  dat = read_csv("input_files/spec_list_fish.csv")  
 }
 if(sp_group == "macrophytes") {
-  dat = read_csv("/scratch/project_2017703/WP3/SDM/input_files/spec_list_macrophytes_update.csv")  
+  dat = read_csv("input_files/spec_list_macrophytes_update.csv")  
 }
 if(sp_group == "invertebrates") {
-  dat = read_csv("/scratch/project_2017703/WP3/SDM/input_files/spec_list_invertebrates.csv")  
+  dat = read_csv("input_files/spec_list_invertebrates.csv")  
 }
 
 dat$sp_workname = gsub(x = dat$scientific_name, pattern = " ", replacement = "_")
@@ -33,12 +32,12 @@ dat = dat %>% filter(quantity >= 150)
 
 # R template ; placeholder: str_a - str_l
 r.template = read_lines(
-   file = "/scratch/project_2017703/WP3/SDM/R_scripts/GAM_modelling_current.R"
+   file = "R_scripts/GAM_modelling_current.R"
 )
 
 # sbatch template; placeholder: str_a
 sbatch.template = read_lines(
-  file = "/scratch/project_2017703/WP3/SDM/R_scripts/batch_new.sh"
+  file = "R_scripts/batch_new.sh"
 )
 
 model.range = 171:203
@@ -72,7 +71,7 @@ for (s in model.range) { # first row is a column description
   write_lines(
     s.temp, 
     file = paste0(
-      "/scratch/project_2017703/WP3/SDM/models/", 
+      "models/", 
       sp_group, "/",
       dat$sp_workname[s], 
       ".sh"
@@ -106,7 +105,7 @@ for (s in model.range) { # first row is a column description
   write_lines(
     r.temp, 
     file = paste0(
-      "/scratch/project_2017703/WP3/SDM/models/",
+      "models/",
       sp_group, "/",
       dat$sp_workname[s], 
       ".R"

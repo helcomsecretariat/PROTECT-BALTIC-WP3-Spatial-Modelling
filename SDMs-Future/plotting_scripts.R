@@ -1,6 +1,7 @@
-# Protect Baltic future SDM modelling 
-# Antti Takolander, Finnish Environment Institute 
-# 08 / 2026
+# plot observed vs fitted of a binary classifier in each p bin  
+
+# obs = data.in$y
+# pred_prob = data.in$f_pred
 
 calibration_plot <- function(obs, pred_prob, n.bins = 10) {
   
